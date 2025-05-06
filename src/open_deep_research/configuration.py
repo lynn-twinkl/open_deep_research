@@ -38,7 +38,7 @@ class Configuration:
     search_api_config: Optional[Dict[str, Any]] = None
     
     # Graph-specific configuration
-    number_of_queries: int = 2 # Number of search queries to generate per iteration
+    number_of_queries: int = 4 # Number of search queries to generate per iteration
     max_search_depth: int = 2 # Maximum number of reflection + search iterations
     planner_provider: str = "anthropic"  # Defaults to Anthropic as provider
     planner_model: str = "claude-3-7-sonnet-latest" # Defaults to claude-3-7-sonnet-latest
