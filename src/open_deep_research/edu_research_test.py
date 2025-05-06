@@ -66,16 +66,41 @@ thread = {"configurable": {"thread_id": str(uuid.uuid4()),
 # Define research topic about K-12 education
 topic = "Conduct research on K-12 education in Texas and Florida for the last week of April 2025. Identify significant policy shifts, notable accolades, key controversies, and movements by digital/edtech resource providers. Focus on gathering information relevant for strategic decision-making purposes"
 
-# Create an async function to run the graph workflow
+# ---------------- RESEARCH FUNCTIONS -----------------
+
+# Function to conduct superficial research to determine structure.
+## While we won't be using HITL, this is still useful for validating that the REPORT_STRUCTURE is being used.
+
 async def run_research():
-    print("Starting research workflow...")
+    print("Running preliminary research...")
     async for event in graph.astream({"topic": topic}, thread, stream_mode="updates"):
         if '__interrupt__' in event:
             interrupt_value = event['__interrupt__'][0].value
             print(interrupt_value)
     print("Research workflow completed.")
 
-# Run the async function - this is the entry point
+
+    # Automatically approve the final plan and execute the report generation. We skip the feddback submission part.
+    # The system will now initiate deep research.
+
+    print("Running deep research...")
+    async for event in graph.astream(Command(resume=True), thread, stream_mode="updates"):
+        print(event)
+        print("\n")
+
+    final_state = graph.get_state(thread)
+    report_content = final_state.values.get('final_report')
+
+    if report_content:
+        with open('final_report.md', 'w') as report_file:
+            report_file.write(report_content)
+        print("Report succesffully saved!")
+    else:
+        print("Error: No report content found in final_state")
+
+
+
+## ------ USAGE ------
 if __name__ == "__main__":
     print(f"Using open_deep_research version: {open_deep_research.__version__}")
     asyncio.run(run_research())
