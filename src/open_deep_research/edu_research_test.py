@@ -92,7 +92,7 @@ async def run_research():
     report_content = final_state.values.get('final_report')
 
     if report_content:
-        with open('final_report.md', 'w') as report_file:
+        with open('../../../final_report.md', 'w') as report_file:
             report_file.write(report_content)
         print("Report succesffully saved!")
     else:
