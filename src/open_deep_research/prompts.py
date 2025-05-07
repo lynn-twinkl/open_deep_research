@@ -1,4 +1,4 @@
-report_planner_query_writer_instructions="""You are performing research for a report. 
+report_planner_query_writer_instructions="""You are performing research on K12 Education in the US.
 
 <Report topic>
 {topic}
@@ -45,11 +45,10 @@ Here is context to use to plan the sections of the report:
 Generate a list of sections for the report. Your plan should be tight and focused with NO overlapping sections or unnecessary filler. 
 
 For example, a good report structure might look like:
-1/ intro
-2/ overview of topic A
-3/ overview of topic B
-4/ comparison between A and B
-5/ conclusion
+1/ a clear H1 heading report title with no introduction 
+2/ a state-based H2 heading (eg. '## TEXAS','## GEORGIA')
+3/ a H3 heading for each state-specific subsection (e.g. '### CONTROVERSIES','### ACCOLADES')
+5/ no conclusions
 
 Each section should have the fields:
 
@@ -121,11 +120,12 @@ section_writer_instructions = """Write one section of a research report.
 - Use simple, clear language
 - Use short paragraphs (2-3 sentences max)
 - Use ## for section title (Markdown format)
+- Use ### for subsection title (Markdown format)
 </Writing Guidelines>
 
 <Citation Rules>
 - Assign each unique URL a single citation number in your text
-- End with ### Sources that lists each source with corresponding numbers
+- End with #### Sources that lists each source with corresponding numbers
 - IMPORTANT: Number sources sequentially without gaps (1,2,3,4...) in the final list regardless of which sources you choose
 - Example format:
   [1] Source Title: URL
@@ -216,28 +216,15 @@ final_section_writer_instructions="""You are an expert technical writer crafting
 
 For Introduction:
 - Use # for report title (Markdown format)
-- 50-100 word limit
+- 30-80 word limit
 - Write in simple and clear language
-- Focus on the core motivation for the report in 1-2 paragraphs
+- Focus on the core motivation for the report in 1 paragraph
 - Use a clear narrative arc to introduce the report
 - Include NO structural elements (no lists or tables)
 - No sources section needed
 
 For Conclusion/Summary:
-- Use ## for section title (Markdown format)
-- 100-150 word limit
-- For comparative reports:
-    * Must include a focused comparison table using Markdown table syntax
-    * Table should distill insights from the report
-    * Keep table entries clear and concise
-- For non-comparative reports: 
-    * Only use ONE structural element IF it helps distill the points made in the report:
-    * Either a focused table comparing items present in the report (using Markdown table syntax)
-    * Or a short list using proper Markdown list syntax:
-      - Use `*` or `-` for unordered lists
-      - Use `1.` for ordered lists
-      - Ensure proper indentation and spacing
-- End with specific next steps or implications
+- Do not include any conclusions or summaries
 - No sources section needed
 
 3. Writing Approach:
@@ -247,8 +234,8 @@ For Conclusion/Summary:
 </Task>
 
 <Quality Checks>
-- For introduction: 50-100 word limit, # for report title, no structural elements, no sources section
-- For conclusion: 100-150 word limit, ## for section title, only ONE structural element at most, no sources section
+- For introduction: 30-80 word limit, # for report title, no structural elements, no sources section
+- For conclusion: no conclusion section should be written.
 - Markdown format
 - Do not include word count or any preamble in your response
 </Quality Checks>"""
@@ -289,15 +276,6 @@ You are scoping research for a report based on a user-provided topic.
    - If you haven't created an introduction yet, use the `Introduction` tool to generate one
      - Set content to include report title with a single # (H1 level) at the beginning
      - Example: "# [Report Title]\n\n[Introduction content...]"
-   - After the introduction, use the `Conclusion` tool to summarize key insights
-     - Set content to include conclusion title with ## (H2 level) at the beginning
-     - Example: "## Conclusion\n\n[Conclusion content...]"
-     - Only use ONE structural element IF it helps distill the points made in the report:
-     - Either a focused table comparing items present in the report (using Markdown table syntax)
-     - Or a short list using proper Markdown list syntax:
-      - Use `*` or `-` for unordered lists
-      - Use `1.` for ordered lists
-      - Ensure proper indentation and spacing
    - Do not call the same tool twice - check your message history
 
 ### Additional Notes:
