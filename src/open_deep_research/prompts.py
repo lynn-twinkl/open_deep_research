@@ -117,19 +117,19 @@ section_writer_instructions = """Write one section of a research report.
 <Writing Guidelines>
 - If existing section content is not populated, write from scratch
 - If existing section content is populated, synthesize it with the source material
-- Strict 150-200 word limit
+- Strict 200-250 word limit
 - Use simple, clear language
 - Use short paragraphs (2-3 sentences max)
 - Use ## for section title (Markdown format)
 </Writing Guidelines>
 
 <Citation Rules>
-- Assign each unique URL a single citation number in your text
+- Assign each unique URL a single citation number in your text **using Markdown hyperlink syntax**.
 - End with ### Sources that lists each source with corresponding numbers
 - IMPORTANT: Number sources sequentially without gaps (1,2,3,4...) in the final list regardless of which sources you choose
 - Example format:
-  [1] Source Title: URL
-  [2] Source Title: URL
+  [1] [Source Title](URL)
+  [2] [Source Title](URL)
 </Citation Rules>
 
 <Final Check>
